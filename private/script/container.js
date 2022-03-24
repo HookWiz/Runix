@@ -30,5 +30,38 @@ class Container {
         this.center.x = this.width / 2;
         // the center.y start from the x position of the element
         this.center.y = this.height / 2;
+    };
+    /**
+     * Check if the HTMLElement is inside the Container on the x axis
+     * @param {HTMLElement} element the HTMLElement to check
+     * @return {bool} true if the element is inside the container on the x axis otherwise false
+     */
+    elementInsideContainerXAxis(element) {
+        if (element.getBoundingClientRect().x > this.x && element.getBoundingClientRect().right < this.x + this.width) {
+            return true;
+        }
+        return false;
+    };
+    /**
+     * Check if the HTMLElement is inside the Container on the y axis
+     * @param {HTMLElement} element the HTMLElement to check
+     * @return {bool} true if the element is inside the container on the y axis otherwise false
+     */
+    elementInsideContainerYAxis(element) {
+        if (element.getBoundingClientRect().y > this.y && element.getBoundingClientRect().bottom < this.y + this.height) {
+            return true;
+        }
+        return false;
+    };
+    /**
+     * Check if the HTMLElement is inside the Container
+     * @param {HTMLElement} element 
+     * @return {bool} true if the element is inside the container otherwise false
+     */
+    elementInsideContainer(element) {
+        if (this.elementInsideContainerXAxis(element) && this.elementInsideContainerYAxis(element)) {
+            return true;
+        }
+        return false;
     }
 }

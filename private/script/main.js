@@ -10,7 +10,6 @@ Version: 1.0
 // Initialisation
 const container = new Container(document.getElementsByClassName('container')[0]);
 const player = new Player();
-let deltaTime;
 let keypress = [];
 /**
  * Check if the array contain the key passed in parameter
