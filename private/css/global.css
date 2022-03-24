@@ -1,0 +1,18 @@
+/*
+Company:  CFPT-I
+Author:  Arthur Jegge <arthur.jgg2@eduge.ch>
+Project:  Runix
+Details:  the global css, used on all the public files
+Date: 24.03.2022
+Version: 1.0
+*/
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
