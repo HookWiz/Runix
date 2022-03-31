@@ -11,6 +11,11 @@ Version: 1.0
 const container = new Container(document.getElementsByClassName('container')[0]);
 const player = new Player();
 let keypress = [];
+let walls = [];
+
+for (let i = 0; i < 1; i++) {
+    walls.push(new Wall(container, 50, 100, 0, 1));
+}
 /**
  * Check if the array contain the key passed in parameter
  * @param {string} key the key to check
@@ -44,5 +49,8 @@ document.onkeyup = event => {
 
 setInterval(() => {
     deltaTime = Date.now();
-    player.update(keypress);
+    player.update(keypress, walls);
+    for (const wall of walls) {
+        wall.update();
+    }
 }, 1000 / 60);

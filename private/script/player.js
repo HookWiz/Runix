@@ -9,11 +9,12 @@ Version: 1.0
 class Player {
     maxSpeed = 10;
     speedStep = 2;
-    speed = 0;
+    speed = 10;
     control = {
         left: 'KeyA',
         right: 'KeyD',
     };
+    /*
     accelrate() {
         if (this.speed + this.speedStep < this.maxSpeed) {
             this.speed += this.speedStep;
@@ -24,36 +25,33 @@ class Player {
             this.speed -= this.speedStep;
         }
     };
+    */
     /**
      * change the position of the point of view on x axis
-     * @param {HTMLElement} container
      * @param {Number} deplacement 
+     * @param {Array} elementsToMove
      */
-    moveX(deplacement) {
-        let elementToMove = document.getElementsByClassName('move');
-        this.accelrate();
-        for (let i = 0; i < elementToMove.length; i++) {
+    moveX(deplacement, elementsToMove) {
+        for (let i = 0; i < elementsToMove.length; i++) {
             // use same reference
-            let element = elementToMove[i];
-            let newPosX = element.getBoundingClientRect().x + deplacement;
-            element.style.left = `${newPosX}px`;
+            let element = elementsToMove[i];
+            let newPosX = element.element.offsetLeft + deplacement;
+            element.x = newPosX;
         }
     };
-    //! Need to upgrade the movement of the player, feel slow and disturbing
     /**
      * update the player
      * @param {Array.<string>} keypress 
+     * @param {Array} elementsToMove 
      */
-    update(keypress) {
+    update(keypress, elementsToMove) {
         if (keypress.length > 0) {
             if (keypress.containKey(this.control.left)) {
-                this.moveX(-this.speed);
+                this.moveX(+this.speed, elementsToMove);
             }
             if (keypress.containKey(this.control.right)) {
-                this.moveX(+this.speed);
+                this.moveX(-this.speed, elementsToMove);
             }
-        } else {
-            this.decelerate();
         }
     }
 
