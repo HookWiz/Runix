@@ -81,16 +81,14 @@ function updateActionFromClick() {
 }
 
 function updateActionFromKey() {
-    if (keypress.length > 0) {
-        if (keypress.containKey(control.left)) {
-            action.left = true;
-        } else {
-            action.left = false;
-        }
-        if (keypress.containKey(control.right)) {
-            action.right = true;
-        } else {
-            action.right = false;
-        }
+    if (keypress.containKey(control.left)) {
+        action.left = true;
+    } else {
+        action.left = false;
+    }
+    if (keypress.containKey(control.right)) {
+        action.right = true;
+    } else {
+        action.right = false;
     }
 }

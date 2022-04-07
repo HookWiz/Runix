@@ -12,10 +12,10 @@ class Wall {
     element;
     // the spawnArea
     spawnArea = {
-        x: container.center.x - 5,
-        y: container.center.y - 5,
-        width: 10,
-        height: 10,
+        x: container.center.x - 50,
+        y: container.center.y - 50,
+        width: 100,
+        height: 100,
     };
     // the rectange of the Wall
     x = 0;
@@ -60,13 +60,12 @@ class Wall {
     update() {
         // Arreter de grandire avant la zone de collision
         this.distance += this.step;
-        if (this.distance >= 980) {
-            this.element.remove();
-            //this.distance = 0;
+        if (this.distance >= 1000) {
+            //this.element.remove();
+            this.distance = 0;
         }
         this.updateHeightYFromDistance();
         this.updateWidthXFromRatio();
-        //this.element.style.transform = `perspective(${1000}px) translateZ(${this.distance}px)`
         this.updateStyleFromRect();
     };
     updateStyleFromRect() {
