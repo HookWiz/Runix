@@ -10,6 +10,13 @@ class Wall {
     // the HTMLElement
     container;
     element;
+    // the spawnArea
+    spawnArea = {
+        x: container.center.x - 5,
+        y: container.center.y - 5,
+        width: 10,
+        height: 10,
+    };
     // the rectange of the Wall
     x = 0;
     y = 0;
@@ -18,38 +25,48 @@ class Wall {
     // the distance between the player and the Wall
     distance;
     step;
+    ratio;
 
     constructor(container, width, height, distance, step) {
         this.container = container;
         this.width = width;
         this.height = height;
-        this.x = container.center.x - this.width / 2;
-        this.y = this.container.center.y - this.height / 2;
+        this.generateWallPos();
         this.distance = distance;
         this.step = step;
+        this.ratio = width / height;
         this.element = document.createElement('div');
         this.element.classList.add('wall', 'move');
         this.updateStyleFromRect();
-        container.element.appendChild(this.element);
+        this.container.element.appendChild(this.element);
     };
-    /*
-    updateHeightTopFromDistance() {
+
+
+    generateWallPos() {
+        this.x = Math.random() * (this.spawnArea.width - this.width) + this.spawnArea.x;
+        this.y = this.container.center.y - this.height / 2;
+    }
+
+    updateHeightYFromDistance() {
         let newHeight = this.container.height * this.distance / 1000;
         this.y -= (newHeight - this.height) / 2;
         this.height = newHeight;
     };
-    updateWidthLeftFromDistance() {
-        let newWidth = this.container.width * this.distance / 1000;
+    updateWidthXFromRatio() {
+        let newWidth = this.ratio * this.height;
         this.x -= (newWidth - this.width) / 2;
         this.width = newWidth;
     };
-    */
     update() {
+        // Arreter de grandire avant la zone de collision
         this.distance += this.step;
-        if (this.distance >= 800) {
-            this.distance = 0;
+        if (this.distance >= 980) {
+            this.element.remove();
+            //this.distance = 0;
         }
-        this.element.style.transform = `perspective(${1000}px) translateZ(${this.distance}px)`
+        this.updateHeightYFromDistance();
+        this.updateWidthXFromRatio();
+        //this.element.style.transform = `perspective(${1000}px) translateZ(${this.distance}px)`
         this.updateStyleFromRect();
     };
     updateStyleFromRect() {

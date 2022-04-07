@@ -63,5 +63,21 @@ class Container {
             return true;
         }
         return false;
-    }
+    };
+    /**
+     * return true if teh position is inside the container
+     * @param {Number} x 
+     * @param {Number} y 
+     * @return {bool}
+     */
+    positionInsideContainer(x, y) {
+        if (x >= this.x &&
+            x <= this.x + this.width &&
+            y >= this.y &&
+            y <= this.y + this.height
+        ) {
+            return true;
+        }
+        return false;
+    };
 }

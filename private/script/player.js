@@ -10,10 +10,6 @@ class Player {
     maxSpeed = 10;
     speedStep = 2;
     speed = 10;
-    control = {
-        left: 'KeyA',
-        right: 'KeyD',
-    };
     /*
     accelrate() {
         if (this.speed + this.speedStep < this.maxSpeed) {
@@ -41,17 +37,15 @@ class Player {
     };
     /**
      * update the player
-     * @param {Array.<string>} keypress 
+     * @param {Object} action 
      * @param {Array} elementsToMove 
      */
     update(keypress, elementsToMove) {
-        if (keypress.length > 0) {
-            if (keypress.containKey(this.control.left)) {
-                this.moveX(+this.speed, elementsToMove);
-            }
-            if (keypress.containKey(this.control.right)) {
-                this.moveX(-this.speed, elementsToMove);
-            }
+        if (action.left) {
+            this.moveX(+this.speed, elementsToMove);
+        }
+        if (action.right) {
+            this.moveX(-this.speed, elementsToMove);
         }
     }
 
